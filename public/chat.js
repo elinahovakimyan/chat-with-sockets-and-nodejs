@@ -1,6 +1,6 @@
 // Make connection
 
-const socket = io.connect('http://localhost:2700');
+const socket = io.connect('https://hidden-stream-51748.herokuapp.com');
 
 
 // Query DOM
@@ -15,10 +15,12 @@ const feedback = document.getElementById('feedback');
 
 btn.addEventListener('click', function() {
   const personName = (!!handle.value) ? handle.value : 'Anonym :<';
-  socket.emit('chat', {
-    message: message.value,
-    handle: personName
-  });
+  if(!!message.value) {
+    socket.emit('chat', {
+      message: message.value,
+      handle: personName
+    });
+  }
   message.value = '';
 });
 
